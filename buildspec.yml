@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Setting up
+      - npm install -g serverless
+      - sls plugin install -n serverless-wsgi
+      - sls plugin install -n serverless-python-requirements
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - echo Running Tests
+      - pytest
+      - echo Deploying
+      - sls deploy
